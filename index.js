@@ -19,7 +19,16 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.get("/api/date", function(req, res){
+//creating a header parser
+app.get("/api/whoami", (req,res) => {
+  res.json({
+    ipaddress: req.ip,
+    language: req.get('Accept-Language'),
+    software: req.get("User-Agent")
+  })
+})
+
+app.get("/api/:date?", function(req, res){
 
   const inputDate = req.params.date;
 
