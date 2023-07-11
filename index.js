@@ -19,15 +19,6 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-//creating a header parser
-app.get("/api/whoami", (req,res) => {
-  res.json({
-    ipaddress: req.ip,
-    language: req.get('Accept-Language'),
-    software: req.get("User-Agent")
-  })
-})
-
 app.get("/api/:date?", function(req, res){
 
   const inputDate = req.params.date;
@@ -64,6 +55,15 @@ app.get("/api/:date?", function(req, res){
   res.json({
     unix: unixTimestamp,
     utc: utcDate
+  })
+})
+
+//creating a header parser
+app.get("/apii/whoami", (req,res) => {
+  res.json({
+    ipaddress: req.ip,
+    language: req.get('Accept-Language'),
+    software: req.get("User-Agent")
   })
 })
 
